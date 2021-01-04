@@ -10,6 +10,7 @@ opencv-python==4.5.1.48
 openpyxl==3.0.5
 pandas==1.2.0
 pdfminer.six==20201018
+pipetools==0.3.6
 pycparser==2.20
 PyPDF2==1.26.0
 python-dateutil==2.8.1
