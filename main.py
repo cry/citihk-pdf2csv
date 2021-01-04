@@ -30,7 +30,7 @@ def normalise_characters(rows):
 
 
 def fixup_empty_columns(rows):
-    # TODO carey: implement this
+    # TODO: implement this
     return rows
 
 
@@ -39,19 +39,20 @@ process_table = (
 )
 
 
+def do_the_thing(pdf):
+    print(pdf)
+    interesting_pages = get_interesting_pdf_pages(pdf)
+
+    tables = camelot.read_pdf(pdf, pages=",".join(interesting_pages), flavor="stream")
+    tables = [process_table(table.data) for table in tables]
+
+    print(tables)
+
+
 @click.command()
 @click.argument("pdf", nargs=-1)
 def main(pdf):
-    for pdf in pdf:
-        print(pdf)
-        interesting_pages = get_interesting_pdf_pages(pdf)
-
-        tables = camelot.read_pdf(
-            pdf, pages=",".join(interesting_pages), flavor="stream"
-        )
-        tables = [process_table(table.data) for table in tables]
-
-        print(tables)
+    print([do_the_thing(pdf) for pdf in pdf])
 
 
 if __name__ == "__main__":
